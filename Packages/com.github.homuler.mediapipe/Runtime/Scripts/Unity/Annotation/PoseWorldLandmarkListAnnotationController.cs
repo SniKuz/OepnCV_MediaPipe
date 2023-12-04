@@ -77,7 +77,7 @@ namespace Mediapipe.Unity
       while(time > 0)
       {
         time -= Time.deltaTime;
-        for(int i = 0, cnt = _saveTarget.Count; i < cnt; i++)
+        for(int i = 0; i < 33; i++)
         {
           try
             {

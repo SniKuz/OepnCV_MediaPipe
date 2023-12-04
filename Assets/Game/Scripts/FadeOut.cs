@@ -6,6 +6,11 @@ using UnityEngine;
 public class FadeOut : MonoBehaviour
 {
     public GameObject gameStartScene;
+
+    void Awake()
+    {
+        Screen.SetResolution(1080, 1920, true); 
+    }
     void Start()
     {
         FadeOutImg();
