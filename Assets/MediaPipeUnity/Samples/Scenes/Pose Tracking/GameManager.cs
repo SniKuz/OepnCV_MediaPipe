@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject Camera;
     public TextMeshProUGUI timeText;
     private bool gameEnd = false;
+    public GameObject plane;
 
     void Awake()
     {
@@ -80,6 +81,18 @@ public class GameManager : MonoBehaviour
         .OnComplete(static () => {
             RedLightGreenLigth();
         });
+    }
+
+    public void PlayWin()
+    {
+        gameEnd = true;
+        Pose.EndByMove -= PlayEnd;
+        AudioSource.Stop();
+        plane.SetActive(true);
+        timeText.text = "you survived";
+        timeText.fontSize = 72;
+        timeText.gameObject.SetActive(true);
+        StartCoroutine(ReturnLobby());
     }
 
 
