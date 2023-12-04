@@ -8,8 +8,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Rendering;
 
 namespace Mediapipe.Unity
 {
@@ -22,11 +20,14 @@ namespace Mediapipe.Unity
     public float threshold = 0.3f;
     private IList<Landmark> _currentTarget;
     private IList<Landmark> _saveTarget;
+    public event Action GreenLightRedLightFinsh = delegate { };
+    public event Action EndByMove = delegate { };
 
     protected override void Start()
     {
       base.Start();
       transform.localPosition = new Vector3(0, _hipHeightMeter * _scale.y, 0);
+
     }
 
     public void DrawNow(IList<Landmark> target)
@@ -78,15 +79,23 @@ namespace Mediapipe.Unity
         time -= Time.deltaTime;
         for(int i = 0, cnt = _saveTarget.Count; i < cnt; i++)
         {
-          Vector3 current2save = new Vector3(_saveTarget[i].X - _currentTarget[i].X, _saveTarget[i].Y - _currentTarget[i].Y, _saveTarget[i].Z - _currentTarget[i].Z);
-          if(current2save.magnitude > threshold)
+          try
+            {
+
+            Vector3 current2save = new Vector3(_saveTarget[i].X - _currentTarget[i].X, _saveTarget[i].Y - _currentTarget[i].Y, _saveTarget[i].Z - _currentTarget[i].Z);
+            if(current2save.magnitude > threshold)
+            {
+              EndByMove();
+            }
+          } catch (Exception e)
           {
-            Debug.Log("Bamb");
+            ;
           }
         }
         yield return null;
       }
       Debug.Log("KKH Finish");
+      GreenLightRedLightFinsh();
     }
 
     void Update()
