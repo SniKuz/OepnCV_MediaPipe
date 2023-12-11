@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator StartScene()
     {
-        float time = 4f;
+        float time = 3.99f;
         while(time > 1f)
         {
             timeText.text = (int)time + "";

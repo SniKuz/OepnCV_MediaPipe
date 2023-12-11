@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.github-glitchenzo.nugetforunity": {
-      "version": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "80f143b9557ee659ed15d9bb941f3600ae2ff9e2"
-    },
     "com.github.homuler.mediapipe": {
       "version": "file:com.github.homuler.mediapipe",
       "depth": 0,
